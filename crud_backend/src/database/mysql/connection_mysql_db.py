@@ -54,7 +54,7 @@ class ConnectionMysqlDB(ConnectionDBInterface):
 
     def create_connection(self) -> None:
         """create a connection session with the database.
-        
+
         Returns:
             Session: session with the database.
         """
@@ -67,7 +67,7 @@ class ConnectionMysqlDB(ConnectionDBInterface):
 
     def __enter__(self) -> Self:
         """calls the session creation method.
-        
+
         Returns:
             Self: the instance self.
         """

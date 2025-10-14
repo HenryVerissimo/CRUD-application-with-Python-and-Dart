@@ -3,7 +3,7 @@ from fastapi import FastAPI
 
 def create_app() -> FastAPI:
     """FastAPI application Factory.
-    
+
     Returns:
         FastAPI: An instance of the FastAPI application.
     """

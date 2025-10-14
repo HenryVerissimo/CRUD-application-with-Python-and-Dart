@@ -12,7 +12,9 @@ class User(Base):
 
     id: Mapped[int] = mapped_column("id", Integer(), primary_key=True, nullable=False)
     username: Mapped[str] = mapped_column("username", String(100), nullable=False)
-    email: Mapped[str] = mapped_column("email", String(100), nullable=False, unique=True)
+    email: Mapped[str] = mapped_column(
+        "email", String(100), nullable=False, unique=True
+    )
     password_hash: Mapped[str] = mapped_column("password_hash", String(250))
 
     def __init__(self, username: str, email: str, password: str) -> None:
@@ -48,8 +50,8 @@ class User(Base):
         hash = self.ph.hash(password, salt=bytes(self.id))
 
         return hash
-    
-    def verify_password(self,password: str) -> bool:
+
+    def verify_password(self, password: str) -> bool:
         """validates a password using the hash of the user's password.
 
         Args:
@@ -59,4 +61,4 @@ class User(Base):
             bool: True if password is valid or False if not.
         """
 
-        return  self.ph.verify(self.password_hash, password)
+        return self.ph.verify(self.password_hash, password)

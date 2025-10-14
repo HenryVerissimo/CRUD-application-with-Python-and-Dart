@@ -10,7 +10,7 @@ class UserController:
 
     def __init__(self) -> None:
         """Construct method this class.
-        
+
         Attributes:
             user_repo(UserRepository): User repository instantiation for domain rules.
         """
@@ -18,7 +18,7 @@ class UserController:
 
     def create_user(self, user_schema: CreateUserSchema) -> JSONResponse:
         """Create a new user in database.
-        
+
         Args: user_schema(CreateUserSchema): Object with user data.
 
         Returns:
