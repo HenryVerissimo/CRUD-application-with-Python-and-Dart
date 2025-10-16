@@ -9,6 +9,7 @@ dependencies = [
     "cryptography>=46.0.2",
     "fastapi>=0.119.0",
     "pymysql>=1.1.2",
+    "pytest>=8.4.2",
     "python-decouple>=3.8",
     "sqlalchemy>=2.0.44",
     "uvicorn>=0.37.0",
@@ -20,4 +21,11 @@ dev = [
 ]
 test = [
     "pytest>=8.4.2",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "integration: all integration tests",
+    "db_integration_test: databse-specific intergration testing"
 ]
