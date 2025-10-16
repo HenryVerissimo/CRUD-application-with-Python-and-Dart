@@ -34,8 +34,8 @@ class User(Base):
 
         self.username = username
         self.email = email
-        self.password_hash = self._hashing_password(password)
         self.ph = PasswordHasher()
+        self.password_hash = self._hashing_password(password)
 
     def _hashing_password(self, password: str) -> str:
         """Create a hash of the user's password.
@@ -47,7 +47,7 @@ class User(Base):
             str: Password hash.
         """
 
-        hash = self.ph.hash(password, salt=bytes(self.id))
+        hash = self.ph.hash(password)
 
         return hash
 
