@@ -40,3 +40,17 @@ class UserRepository:
             connection.session.refresh(new_user)  # type: ignore
 
             return new_user
+        
+    def select_user_by_email(self, user_email: str) -> User:
+        """Select a user in databse by email.
+
+        Args:
+            user_email(str): User's unique email.
+
+        Returns:
+            User: Object with user data.
+        """
+
+        with self.connection_db as connection:
+            user = connection.session.query(User).filter(User.email == user_email).first() #type: ignore
+            return user
