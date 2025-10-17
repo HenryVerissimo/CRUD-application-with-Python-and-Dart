@@ -1,0 +1,22 @@
+repos:
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.14.1
+  hooks:
+    - id: ruff-check
+    - id: ruff-format
+
+- repo: local
+  hooks:
+    - id: requirements
+      name: Update requirements.txt
+      entry: bash -c "cd crud_backend && uv export --no-annotate --no-header --format requirements.txt > requirements.txt"
+      language: system
+      files: './uv\.lock$'
+      pass_filenames: false      
+      stages: [pre-commit]
+    - id: pytest
+      name: run tests with pytest
+      entry: uv run pytest -s -v
+      language: system
+      pass_filenames: false
+      stages: [pre-push]
