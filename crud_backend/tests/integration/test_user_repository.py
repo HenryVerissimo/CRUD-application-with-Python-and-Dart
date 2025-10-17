@@ -13,7 +13,7 @@ from src.database.sqlite.connection_sqlite_db import ConnectionSqliteDB
 
 
 @pytest.fixture
-def connection_db() -> Generator[ConnectionDBInterface]:
+def connection_db() -> Generator[ConnectionDBInterface, None, None]:
     database_test = ConnectionSqliteDB("test")
     create_model_tables(Base, database_test)
 
