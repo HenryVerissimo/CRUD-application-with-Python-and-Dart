@@ -1,6 +1,8 @@
+from typing import List
+from fastapi import status
 from fastapi import APIRouter, HTTPException
 
-from src.schemas.user_schemas import CreateUserSchema
+from src.schemas.user_schemas import CreateUserSchema, UserResponse
 from src.controllers.user_controller import UserController
 
 from src.utils import regex_validations as regex
@@ -26,5 +28,13 @@ async def create_user(user_schema: CreateUserSchema):
 
     controller = UserController()
     response = controller.create_user(user_schema)
+
+    return response
+
+
+@user_router.get("/", response_model=List[UserResponse], status_code=status.HTTP_200_OK)
+async def get_users():
+    controller = UserController()
+    response = controller.get_all_users()
 
     return response
