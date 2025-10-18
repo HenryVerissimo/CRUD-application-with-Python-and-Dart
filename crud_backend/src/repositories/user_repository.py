@@ -1,3 +1,5 @@
+from typing import List
+
 from src.models.user_model import User
 from src.schemas.user_schemas import CreateUserSchema
 from src.database.connection_db_interface import ConnectionDBInterface
@@ -53,6 +55,17 @@ class UserRepository:
 
         with self.connection_db as connection:
             user = (
-                connection.session.query(User).filter(User.email == user_email).first()
-            )  # type: ignore
+                connection.session.query(User).filter(User.email == user_email).first()  # type: ignore
+            )
             return user
+
+    def select_users(self) -> List[User]:
+        """Select all users in the database.
+
+        Returns:
+            List[User]: a list of objects with all users in the database.
+        """
+        with self.connection_db as connection:
+            users = connection.session.query(User).all()  # type: ignore
+
+            return users
