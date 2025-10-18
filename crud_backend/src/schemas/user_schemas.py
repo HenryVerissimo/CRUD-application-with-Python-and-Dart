@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class CreateUserSchema(BaseModel):
@@ -8,3 +8,13 @@ class CreateUserSchema(BaseModel):
     email: str
     password: str
     confirm_password: str
+
+
+class UserResponse(BaseModel):
+    """Data schema to return the user in the response"""
+
+    id: int
+    username: str
+    email: str
+
+    model_config = ConfigDict(from_attributes=True)
