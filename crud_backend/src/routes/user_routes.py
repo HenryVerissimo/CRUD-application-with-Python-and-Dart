@@ -34,6 +34,8 @@ async def create_user(user_schema: CreateUserSchema):
 
 @user_router.get("/", response_model=List[UserResponse], status_code=status.HTTP_200_OK)
 async def get_users():
+    """Select all users in the database."""
+
     controller = UserController()
     response = controller.get_all_users()
 
