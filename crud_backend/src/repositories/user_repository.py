@@ -43,7 +43,7 @@ class UserRepository:
 
             return new_user
 
-    def select_user_by_email(self, user_email: str) -> User:
+    def select_user_by_email(self, user_email: str) -> User | None:
         """Select a user in databse by email.
 
         Args:
