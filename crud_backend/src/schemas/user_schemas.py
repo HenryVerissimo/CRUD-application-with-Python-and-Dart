@@ -18,3 +18,10 @@ class UserResponse(BaseModel):
     email: str
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class UserUpdate(BaseModel):
+    """Data schema to updating user record in database"""
+
+    username: str | None
+    email: str | None
