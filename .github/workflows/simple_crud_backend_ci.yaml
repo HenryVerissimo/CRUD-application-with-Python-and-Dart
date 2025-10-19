@@ -26,7 +26,7 @@ jobs:
           uv venv .venv
           uv sync --all-groups
       - name: Run Pytest
-        run: uv run pytest.
+        run: uv run pytest .
 
   linter:
     needs: tests
