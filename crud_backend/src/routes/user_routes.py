@@ -3,8 +3,8 @@ from fastapi import status
 from fastapi import APIRouter, HTTPException
 
 from src.models.user_model import User
-from src.schemas.user_schemas import CreateUserSchema, UserResponse
 from src.controllers.user_controller import UserController
+from src.schemas.user_schemas import CreateUserSchema, UserResponse, UserUpdate
 
 from src.utils import regex_validations as regex
 
@@ -46,5 +46,29 @@ async def get_users() -> List[User]:
 
     controller = UserController()
     response = controller.get_all_users()
+
+    return response
+
+
+@user_router.patch("/update/{user_id}", response_model=UserResponse)
+async def update_user(user_id: int, user_update_schema: UserUpdate) -> User:
+    """Update user data in the database."""
+
+    if user_update_schema.email is not None:
+        if not regex.validate_email(user_update_schema.email):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="The email pattern is not valid",
+            )
+
+    if user_update_schema.username is not None:
+        if not regex.validate_username(user_update_schema.username):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="The username pasttern is not valid",
+            )
+
+    controller = UserController()
+    response = controller.update_user_data(user_id, user_update_schema)
 
     return response
