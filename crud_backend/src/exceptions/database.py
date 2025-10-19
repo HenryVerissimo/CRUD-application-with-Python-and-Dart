@@ -16,6 +16,12 @@ class ErrorSelectingRecordsFromDatabase(DatabaseError):
     pass
 
 
+class ErrorRecordNotFound(DatabaseError):
+    """Exception used to capture errors generated when records in database are not found."""
+
+    pass
+
+
 class ErrorCreatingRecordInDatabase(DatabaseError):
     """Exception used to capture errors generated when creating records in the database."""
 
@@ -24,5 +30,11 @@ class ErrorCreatingRecordInDatabase(DatabaseError):
 
 class ErrorEmailAlreadyExists(DatabaseError):
     """Exception used to capture errors generated when emails already existing in the database are requested for use by other users."""
+
+    pass
+
+
+class ErrorPerformingDatabaseOperation(DatabaseError):
+    """Exception used to capture errors generated when operating records in the database."""
 
     pass
