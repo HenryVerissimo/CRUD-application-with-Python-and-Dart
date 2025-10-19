@@ -1,12 +1,15 @@
 from typing import List
 from fastapi import status
-from fastapi.responses import JSONResponse
 
 from src.models.user_model import User
 from src.repositories.user_repository import UserRepository
 from src.database.mysql.connection_mysql_db import CONNECTION_MYSQL
-from src.exceptions.database import ErrorSelectingRecordsFromDatabase
 from src.schemas.user_schemas import CreateUserSchema
+from src.exceptions.database import (
+    ErrorSelectingRecordsFromDatabase,
+    ErrorCreatingRecordInDatabase,
+    ErrorEmailAlreadyExists,
+)
 
 
 class UserController:
@@ -20,21 +23,34 @@ class UserController:
         """
         self.user_repo = UserRepository(CONNECTION_MYSQL)
 
-    def create_user(self, user_schema: CreateUserSchema) -> JSONResponse:
+    def create_user(self, user_schema: CreateUserSchema) -> User:
         """Create a new user in database.
 
         Args: user_schema(CreateUserSchema): Object with user data.
 
         Returns:
-            JsonResponse: Response with a successfully message, id and username.
+            User: User object with its data.
         """
-        data = self.user_repo.create_user(user_schema)
 
-        payload = {
-            "message": "User successfully created",
-            "data": {"id": data.id, "username": data.username},
-        }
-        return JSONResponse(content=payload, status_code=200)
+        try:
+            user = self.user_repo.select_user_by_email(user_email=user_schema.email)
+
+            if user:
+                raise ErrorEmailAlreadyExists(
+                    detail="This email has already been used",
+                    status_code=status.HTTP_409_CONFLICT,
+                )
+
+            data = self.user_repo.create_user(user_schema)
+
+        except Exception as error:
+            raise ErrorCreatingRecordInDatabase(
+                detail="Error trying to create user in the database",
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                original_exception=error,
+            )
+
+        return data
 
     def get_all_users(self) -> List[User]:
         """Get all users in database.
