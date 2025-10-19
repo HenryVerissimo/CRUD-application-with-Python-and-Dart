@@ -1,7 +1,7 @@
 from typing import List
 
 from src.models.user_model import User
-from src.schemas.user_schemas import CreateUserSchema
+from src.schemas.user_schemas import CreateUserSchema, UserUpdate
 from src.database.connection_db_interface import ConnectionDBInterface
 
 
@@ -69,3 +69,30 @@ class UserRepository:
             users = connection.session.query(User).all()  # type: ignore
 
             return users
+
+    def update_user(self, user_id: int, user_update_schema: UserUpdate) -> User | None:
+        """Update user data in the database by unique id.
+
+        Args:
+            user_id(int): unique id of the user who will have their data updated.
+            user_update_schema(UserUpdate): Object with user data that will be updated.
+
+        Returns:
+            User: User object with its data.
+            None: if the user does not exist.
+        """
+
+        with self.connection_db as connection:
+            user = connection.session.query(User).filter(User.id == user_id).first()  # type: ignore
+
+            if user is not None:
+                if user_update_schema.username is not None:
+                    user.username = user_update_schema.username
+
+                if user_update_schema.email is not None:
+                    user.email = user_update_schema.email
+
+                connection.session.commit()  # type: ignore
+                connection.session.refresh(user)  # type: ignore
+
+            return user
