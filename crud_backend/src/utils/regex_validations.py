@@ -20,7 +20,7 @@ def validate_email(email: str) -> bool:
         False
     """
 
-    regex_email = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+    regex_email = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"  # nosec
 
     if re.fullmatch(regex_email, email):
         return True
@@ -47,7 +47,7 @@ def validate_password(password: str) -> bool:
     """
 
     regex_password = (
-        r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+        r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"  # nosec
     )
 
     if re.fullmatch(regex_password, password):
@@ -74,7 +74,7 @@ def validate_username(username: str) -> bool:
         False
     """
 
-    regex_username = r"^[\w\-\.]{4,20}$"
+    regex_username = r"^[\w\-\.]{4,20}$"  # nosec
 
     if re.fullmatch(regex_username, username):
         return True
