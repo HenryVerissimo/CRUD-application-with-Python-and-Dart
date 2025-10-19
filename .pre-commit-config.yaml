@@ -4,7 +4,13 @@ repos:
   hooks:
     - id: ruff-check
     - id: ruff-format
-
+- repo: https://github.com/PyCQA/bandit
+  rev: '1.7.7'  # or latest version
+  hooks:
+    - id: bandit
+      args: ["-r", "crud_backend/src/", "-ll", "-ii"]
+      pass_filenames: false 
+      stages: [pre-push]
 - repo: local
   hooks:
     - id: requirements
