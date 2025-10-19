@@ -2,7 +2,7 @@ class DatabaseError(Exception):
     """Class inherited by all custom database exceptions"""
 
     def __init__(
-        self, detail: str, status_code: int, original_exception: Exception
+        self, detail: str, status_code: int, original_exception: Exception | None = None
     ) -> None:
         super().__init__(detail)
         self.detail = detail
@@ -12,5 +12,17 @@ class DatabaseError(Exception):
 
 class ErrorSelectingRecordsFromDatabase(DatabaseError):
     """Exception used to capture errors generated when selecting records in the database."""
+
+    pass
+
+
+class ErrorCreatingRecordInDatabase(DatabaseError):
+    """Exception used to capture errors generated when creating records in the database."""
+
+    pass
+
+
+class ErrorEmailAlreadyExists(DatabaseError):
+    """Exception used to capture errors generated when emails already existing in the database are requested for use by other users."""
 
     pass
