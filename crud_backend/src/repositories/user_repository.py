@@ -60,6 +60,12 @@ class UserRepository:
             )
             return user
 
+    def select_user_by_id(self, user_id: int) -> User | None:
+        with self.connection_db as connection:
+            user = connection.session.query(User).filter(User.id == user_id).first()  # type: ignore
+
+            return user
+
     def select_users(self) -> List[User]:
         """Select all users in the database.
 
@@ -97,3 +103,15 @@ class UserRepository:
                 connection.session.refresh(user)  # type: ignore
 
             return user
+
+    def delete_user(self, user_id: int) -> None:
+        """Delete user data in the database by unique id.
+
+        Args:
+            user_id(int): unique id of the user who will have their data deleted.
+        """
+
+        with self.connection_db as connection:
+            user = connection.session.query(User).filter(User.id == user_id).first()  # type: ignore
+            connection.session.delete(user)  # type: ignore
+            connection.session.commit()  # type: ignore
