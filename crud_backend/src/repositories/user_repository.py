@@ -51,6 +51,7 @@ class UserRepository:
 
         Returns:
             User: Object with user data.
+            None: if the user does not exist.
         """
 
         with self.connection_db as connection:

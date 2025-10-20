@@ -10,20 +10,8 @@ class DatabaseError(Exception):
         self.original_exception = original_exception
 
 
-class ErrorSelectingRecordsFromDatabase(DatabaseError):
-    """Exception used to capture errors generated when selecting records in the database."""
-
-    pass
-
-
 class ErrorRecordNotFound(DatabaseError):
     """Exception used to capture errors generated when records in database are not found."""
-
-    pass
-
-
-class ErrorCreatingRecordInDatabase(DatabaseError):
-    """Exception used to capture errors generated when creating records in the database."""
 
     pass
 

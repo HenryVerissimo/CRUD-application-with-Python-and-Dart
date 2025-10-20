@@ -6,8 +6,6 @@ from src.repositories.user_repository import UserRepository
 from src.database.mysql.connection_mysql_db import CONNECTION_MYSQL
 from src.schemas.user_schemas import CreateUserSchema, UserUpdate
 from src.exceptions.database import (
-    ErrorSelectingRecordsFromDatabase,
-    ErrorCreatingRecordInDatabase,
     ErrorEmailAlreadyExists,
     ErrorRecordNotFound,
     ErrorPerformingDatabaseOperation,
@@ -46,7 +44,7 @@ class UserController:
             data = self.user_repo.create_user(user_schema)
 
         except Exception as error:
-            raise ErrorCreatingRecordInDatabase(
+            raise ErrorPerformingDatabaseOperation(
                 detail="Error trying to create user in the database",
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 original_exception=error,
@@ -64,7 +62,7 @@ class UserController:
             data = self.user_repo.select_users()
 
         except Exception as error:
-            raise ErrorSelectingRecordsFromDatabase(
+            raise ErrorPerformingDatabaseOperation(
                 detail="Error trying to select users from database",
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 original_exception=error,
