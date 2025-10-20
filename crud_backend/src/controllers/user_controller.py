@@ -107,3 +107,28 @@ class UserController:
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 original_exception=error,
             )
+
+    def delete_user_record(self, user_id: int) -> None:
+        """Update user in the database.
+
+        Args:
+            user_id(int): unique id of the user who will have their data deleted.
+        """
+
+        try:
+            user = self.user_repo.select_user_by_id(user_id)
+
+            if user is None:
+                raise ErrorRecordNotFound(
+                    detail="Record not found in database",
+                    status_code=status.HTTP_404_NOT_FOUND,
+                )
+
+            self.user_repo.delete_user(user_id)
+
+        except Exception as error:
+            raise ErrorPerformingDatabaseOperation(
+                detail="Error trying to delete user from database",
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                original_exception=error,
+            )
