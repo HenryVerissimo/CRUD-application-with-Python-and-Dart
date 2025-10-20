@@ -72,3 +72,11 @@ async def update_user(user_id: int, user_update_schema: UserUpdate) -> User:
     response = controller.update_user_data(user_id, user_update_schema)
 
     return response
+
+
+@user_router.delete("/delete/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_user(user_id: int) -> None:
+    """Delete user in the database"""
+
+    controller = UserController()
+    controller.delete_user_record(user_id)
