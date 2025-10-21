@@ -1,13 +1,17 @@
 # Simple CRUD Project with Python Backend, Dart Interface and MySQL database with Docker.
-### **About:**
+### 📒**About:**
 
-In this project, i intend to test all the best pactices i learned during my backend studies with Python and add some of my more recent studies on creating cross-platform interfaces with Dart and Flutter.
+This project was conceived as a personal challenge to practically apply and test all the best practices I have been studying in Full-Stack development. My main motivation was to build a complete CRUD application using the technologies that have interested me the most lately, always focusing on following strong code conventions and architecture.
+
+For this, I envisioned an architecture that would unite a robust backend in Python (FastAPI) with a modern, cross-platform interface developed in Dart and Flutter. I planned that, to ensure the application would be scalable and have consistent deployment, the entire environment would be fully containerized with Docker. Nginx was intended to act strategically as the entry point that manages and load balances between multiple backend containers, in addition to serving the static frontend files.
+
+The result is a distributed and efficient system, which demonstrates how these different technologies integrate to form a cohesive and production-ready solution. Feel free to explore the architecture and the code!
 
 ![Excalidraw_Project](docs/images/simple_crud.png)
 
 ___
 
-### Main technologies used:
+### 🧪**Versions of the main technologies used:**
 - **Fast API** >= 0.119.0
 - **Uvicorn** >= 0.37.0
 - **SQLAlchemy** >= 2.0.44
