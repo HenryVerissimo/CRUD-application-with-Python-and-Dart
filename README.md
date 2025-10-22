@@ -1,4 +1,4 @@
-# Simple CRUD Project with Python Backend, Dart Interface and MySQL database with Docker.
+# Simple CRUD Project with Python Backend, Dart interface, MySQL, Nginx and Docker.
 ### 📒**About:**
 
 This project was conceived as a personal challenge to practically apply and test all the best practices I have been studying in Full-Stack development. My main motivation was to build a complete CRUD application using the technologies that have interested me the most lately, always focusing on following strong code conventions and architecture.
