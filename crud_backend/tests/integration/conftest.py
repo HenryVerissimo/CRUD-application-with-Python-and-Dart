@@ -4,6 +4,7 @@ import pytest
 from typing import Generator, cast
 
 from src.models.base import Base
+from src.schemas.user_schemas import CreateUserSchema
 from src.repositories.user_repository import UserRepository
 from src.utils.create_model_tables import create_model_tables
 from src.database.connection_db_interface import ConnectionDBInterface
@@ -25,3 +26,15 @@ def connection_db() -> Generator[ConnectionDBInterface, None, None]:
 @pytest.fixture
 def repository(connection_db) -> UserRepository:
     return UserRepository(cast(ConnectionDBInterface, connection_db))
+
+
+@pytest.fixture
+def create_test_user(repository: UserRepository) -> None:
+    user_schema = CreateUserSchema(
+        username="TestUser",
+        email="TestUser@gmail.com",
+        password="TestPassword123@2",
+        confirm_password="TestPassword123@2",
+    )
+
+    repository.create_user(user_schema)

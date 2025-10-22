@@ -29,5 +29,5 @@ test = [
 testpaths = ["tests"]
 markers = [
     "integration: all integration tests",
-    "db_integration_test: databse-specific intergration testing"
+    "db_integration_test: database-specific integration testing"
 ]
