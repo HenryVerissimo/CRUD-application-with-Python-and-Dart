@@ -39,3 +39,10 @@ def test_user_update_in_the_database(
         pytest.fail(
             "the test failed because the test user was not found in the database"
         )
+
+
+def test_delete_user_in_database(repository: UserRepository, create_test_user) -> None:
+    repository.delete_user(1)
+    user = repository.select_user_by_id(1)
+
+    assert user is None
