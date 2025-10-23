@@ -1,9 +1,10 @@
 from typing import List
-from fastapi import status
+from fastapi import status, Depends
 from fastapi import APIRouter, HTTPException
 
 from src.models.user_model import User
 from src.controllers.user_controller import UserController
+from src.dependencies.controllers import get_user_controller
 from src.schemas.user_schemas import CreateUserSchema, UserResponse, UserUpdate
 
 from src.utils import regex_validations as regex
@@ -13,7 +14,10 @@ user_router = APIRouter(prefix="/users", tags=["users"])
 
 
 @user_router.post("/", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
-async def create_user(user_schema: CreateUserSchema) -> User:
+async def create_user(
+    user_schema: CreateUserSchema,
+    controller: UserController = Depends(get_user_controller),
+) -> User:
     """Creates a new user in the databse."""
 
     if not regex.validate_email(user_schema.email):
@@ -34,24 +38,28 @@ async def create_user(user_schema: CreateUserSchema) -> User:
             detail="The username pasttern is not valid",
         )
 
-    controller = UserController()
     response = controller.create_user(user_schema)
 
     return response
 
 
 @user_router.get("/", response_model=List[UserResponse], status_code=status.HTTP_200_OK)
-async def get_users() -> List[User]:
+async def get_users(
+    controller: UserController = Depends(get_user_controller),
+) -> List[User]:
     """Select all users in the database."""
 
-    controller = UserController()
     response = controller.get_all_users()
 
     return response
 
 
 @user_router.patch("/update/{user_id}", response_model=UserResponse)
-async def update_user(user_id: int, user_update_schema: UserUpdate) -> User:
+async def update_user(
+    user_id: int,
+    user_update_schema: UserUpdate,
+    controller: UserController = Depends(get_user_controller),
+) -> User:
     """Update user data in the database."""
 
     if user_update_schema.email is not None:
@@ -68,15 +76,15 @@ async def update_user(user_id: int, user_update_schema: UserUpdate) -> User:
                 detail="The username pasttern is not valid",
             )
 
-    controller = UserController()
     response = controller.update_user_data(user_id, user_update_schema)
 
     return response
 
 
 @user_router.delete("/delete/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_user(user_id: int) -> None:
+async def delete_user(
+    user_id: int, controller: UserController = Depends(get_user_controller)
+) -> None:
     """Delete user in the database"""
 
-    controller = UserController()
     controller.delete_user_record(user_id)
