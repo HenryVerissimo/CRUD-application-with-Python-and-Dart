@@ -1,4 +1,5 @@
 from abc import ABC
+
 from src.schemas.user_schemas import CreateUserSchema, UserResponse
 
 
@@ -6,7 +7,7 @@ class UserControllerMock(ABC):
     pass
 
 
-class CreateUserSuccessfully(UserControllerMock):
+class MockingSuccessfulResponses(UserControllerMock):
     """mock of the UserController class used in the tests"""
 
     def create_user(self, user_schema: CreateUserSchema) -> UserResponse:
