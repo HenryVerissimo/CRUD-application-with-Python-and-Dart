@@ -17,8 +17,6 @@ def create_app() -> FastAPI:
     register_exception_handeler(app)
     app.include_router(user_router)
 
-    app.add_exception_handler
-
     return app
 
 
