@@ -54,7 +54,9 @@ async def get_users(
     return response
 
 
-@user_router.patch("/update/{user_id}", response_model=UserResponse)
+@user_router.patch(
+    "/update/{user_id}", response_model=UserResponse, status_code=status.HTTP_200_OK
+)
 async def update_user(
     user_id: int,
     user_update_schema: UserUpdate,
