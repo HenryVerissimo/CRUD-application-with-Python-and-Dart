@@ -2,6 +2,7 @@
 .venv
 .env
 .pytest_cache
+*.code-workspace
 
 **/__pycache__
 **/.ruff_cache
