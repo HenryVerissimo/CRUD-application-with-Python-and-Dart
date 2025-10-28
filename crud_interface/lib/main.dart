@@ -1,4 +1,4 @@
-import 'package:crud_interface/src/pages/create_user_page.dart';
+import 'package:crud_interface/src/router/router_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class MyAPP extends StatelessWidget {
           selectionColor: Color.fromRGBO(250, 250, 250, 0.8),
         ),
       ),
-      home: CreateUserPage(),
+      home: RouterPage(),
     );
   }
 }
