@@ -2,22 +2,23 @@ import 'package:crud_interface/src/controllers/app_menu_bar_controller.dart';
 import 'package:flutter/material.dart';
 
 class AppMenuBar extends StatefulWidget {
-  const AppMenuBar({super.key});
+  final AppMenuBarController appMenuBarController;
+
+  const AppMenuBar(this.appMenuBarController, {super.key});
 
   @override
   State<AppMenuBar> createState() => AppMenuBarState();
 }
 
 class AppMenuBarState extends State<AppMenuBar> {
-  final appMenuBarController = AppMenuBarController();
-
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
-      listenable: appMenuBarController,
+      listenable: widget.appMenuBarController,
       builder: (context, chield) {
-        final Map menuOptions = appMenuBarController.menuOptions;
-        final Function(String) selectOption = appMenuBarController.selectOption;
+        final Map menuOptions = widget.appMenuBarController.menuOptions;
+        final Function(String) selectOption =
+            widget.appMenuBarController.selectOption;
 
         return Column(
           children: [

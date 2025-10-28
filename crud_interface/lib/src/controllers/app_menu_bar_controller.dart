@@ -8,16 +8,22 @@ class AppMenuBarController extends ChangeNotifier {
     "delete user": false,
   };
 
-  Map<String, bool> get menuOptions => Map.unmodifiable(_menuOptions);
+  Map<String, bool> get menuOptions =>
+      Map<String, bool>.unmodifiable(_menuOptions);
 
   void selectOption(String option) {
-    _menuOptions[option] = true;
+    if (menuOptions.containsKey(option)) {
+      _menuOptions[option] = true;
+    }
 
     for (String keyOption in _menuOptions.keys) {
       if (keyOption != option) {
         _menuOptions[keyOption] = false;
       }
     }
+
     notifyListeners();
   }
 }
+
+final appMenuBarController = AppMenuBarController();

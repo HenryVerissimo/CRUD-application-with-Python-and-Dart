@@ -1,4 +1,3 @@
-import 'package:crud_interface/src/components/app_menu_bar.dart';
 import 'package:crud_interface/src/widgets/custom_button.dart';
 import 'package:crud_interface/src/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -19,64 +18,42 @@ class CreateUserPageState extends State<CreateUserPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(flex: 1, child: AppMenuBar()),
-          Expanded(
-            flex: 11,
-            child: Column(
-              spacing: 40,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    SvgPicture.asset(
-                      "assets/images/create_user_icon.svg",
-                      width: 60,
-                    ),
-                    Text(
-                      "CREATE USER",
-                      style: TextStyle(
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                        fontSize: 32,
-                        fontFamily: "MonomaniacOne",
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  spacing: 5,
-                  children: [
-                    CustomTextField(
-                      label: "USERNAME",
-                      controller: userNameController,
-                    ),
-                    CustomTextField(
-                      label: "EMAIL",
-                      controller: emailController,
-                    ),
-                    CustomTextField(
-                      label: "PASSWORD",
-                      controller: passwordController,
-                    ),
-                    CustomTextField(
-                      label: "CONFIRM PASSWORD",
-                      controller: confirmPasswordController,
-                    ),
-                  ],
-                ),
-                CustomButton(
-                  icon: Icon(Icons.add, color: Colors.black87),
-                  text: "CREATE",
-                  color: Color.fromRGBO(77, 219, 124, 1),
-                  onPressed: () {},
-                ),
-              ],
+    return Column(
+      spacing: 40,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Column(
+          children: [
+            SvgPicture.asset("assets/images/create_user_icon.svg", width: 60),
+            Text(
+              "CREATE USER",
+              style: TextStyle(
+                color: Color.fromRGBO(255, 255, 255, 1),
+                fontSize: 32,
+                fontFamily: "MonomaniacOne",
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
+        Column(
+          spacing: 5,
+          children: [
+            CustomTextField(label: "USERNAME", controller: userNameController),
+            CustomTextField(label: "EMAIL", controller: emailController),
+            CustomTextField(label: "PASSWORD", controller: passwordController),
+            CustomTextField(
+              label: "CONFIRM PASSWORD",
+              controller: confirmPasswordController,
+            ),
+          ],
+        ),
+        CustomButton(
+          icon: Icon(Icons.add, color: Colors.black87),
+          text: "CREATE",
+          color: Color.fromRGBO(77, 219, 124, 1),
+          onPressed: () {},
+        ),
+      ],
     );
   }
 }
