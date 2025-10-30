@@ -26,7 +26,7 @@ class AppMenuBarState extends State<AppMenuBar> {
               child: Row(
                 spacing: 50,
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   TextButton(
                     child: Text(
@@ -91,7 +91,11 @@ class AppMenuBarState extends State<AppMenuBar> {
                 ],
               ),
             ),
-            Divider(color: Color.fromRGBO(77, 219, 124, 1)),
+            Divider(
+              color: menuOptions["delete user"]
+                  ? Color.fromRGBO(219, 77, 101, 1)
+                  : Color.fromRGBO(77, 219, 124, 1),
+            ),
           ],
         );
       },
