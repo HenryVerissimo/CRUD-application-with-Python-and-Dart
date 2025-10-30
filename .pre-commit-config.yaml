@@ -26,3 +26,9 @@ repos:
       language: system
       pass_filenames: false
       stages: [pre-push]
+    - id: flutter-format
+      name: run dart format
+      entry: bash -c "cd crud_interface && dart format ."
+      language: system
+      files: '\.dart$'
+      stages: [pre-commit]
