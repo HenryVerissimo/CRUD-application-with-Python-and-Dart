@@ -23,7 +23,7 @@ class UpdateUserPageState extends State<UpdateUserPage> {
       children: [
         Column(
           children: [
-            SvgPicture.asset("assets/images/create_user_icon.svg", width: 60),
+            SvgPicture.asset("assets/images/update_icon.svg", width: 60),
             Text(
               "UPDATE USER",
               style: TextStyle(
