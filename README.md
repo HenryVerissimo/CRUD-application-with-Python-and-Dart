@@ -23,7 +23,8 @@ ___
 Obs: all dependencies used can be found in the dependency control files (pyproject.toml and pubspec.yaml).
 ___
 
-### Design Interface created with Figma:
+### 🎨**Preview of the interface created with Flutter:**
+[Design da applicação no Figma](https://www.figma.com/design/bN49sVb90XYx9s1Hpumjqu/Sem-t%C3%ADtulo?m=auto&t=vzVUMUTawlX4mAXg-1)
 
 ![Excalidraw_Project](docs/images/create_user.png)
 
