@@ -1,9 +1,9 @@
-import 'package:crud_interface/src/components/app_menu_bar.dart';
-import 'package:crud_interface/src/controllers/app_menu_bar_controller.dart';
-import 'package:crud_interface/src/pages/create_user_page.dart';
-import 'package:crud_interface/src/pages/delete_user_page.dart';
-import 'package:crud_interface/src/pages/list_users_page.dart';
-import 'package:crud_interface/src/pages/update_user_page.dart';
+import 'package:crud_interface/app/ui/controllers/app_menu_bar_controller.dart';
+import 'package:crud_interface/app/ui/components/app_menu_bar.dart';
+import 'package:crud_interface/app/ui/pages/create_user_page.dart';
+import 'package:crud_interface/app/ui/pages/delete_user_page.dart';
+import 'package:crud_interface/app/ui/pages/list_users_page.dart';
+import 'package:crud_interface/app/ui/pages/update_user_page.dart';
 import 'package:flutter/material.dart';
 
 class RouterPage extends StatefulWidget {

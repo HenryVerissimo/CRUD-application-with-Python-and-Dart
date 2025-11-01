@@ -1,4 +1,4 @@
-import 'package:crud_interface/src/widgets/custom_button.dart';
+import 'package:crud_interface/app/ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

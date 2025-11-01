@@ -1,4 +1,4 @@
-import 'package:crud_interface/src/controllers/app_menu_bar_controller.dart';
+import 'package:crud_interface/app/ui/controllers/app_menu_bar_controller.dart';
 import 'package:flutter/material.dart';
 
 class AppMenuBar extends StatefulWidget {

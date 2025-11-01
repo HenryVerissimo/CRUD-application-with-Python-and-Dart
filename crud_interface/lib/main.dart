@@ -1,4 +1,4 @@
-import 'package:crud_interface/src/router/router_page.dart';
+import 'package:crud_interface/app/ui/pages/router_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
